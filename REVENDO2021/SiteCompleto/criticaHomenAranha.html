@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Homen Aranha </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+  <h1>Homem-Aranha no Aranhaverso</h1>
+  <h5>Classificação: livre</h5>
+  <h5>Ano de publicação: 2018</h5>
+  <h5>Diretor: </h5>
+  <h5>Elenco: </h5>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Omelete</p>
+      <p>Nota: 5/5</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Filme é uma das melhores adaptações do Homem-Aranha na história do cinema</p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: IMDb</p>
+      <p>Nota: 8,4/10</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Não há quase nada que eu pudesse melhorar neste filme. Os visuais, conceitos, trilha sonora, personagens, ritmo, humor e animação são alguns dos melhores que já vi em qualquer filme; Eu estava preocupada que o hype pudesse estragar tudo para mim, como sempre faz, mas nem mesmo o grupo de crianças no teatro que não parava de falar alto poderia estragar tudo para mim. É visualmente envolvente e bonito em cada cena, sem falar no seu estilo de arte incrivelmente único e, honestamente, é algo que outros filmes de animação deveriam ter por muito tempo. O único problema real em que consigo pensar são as luzes piscantes, o que realmente afasta qualquer público epiléptico, mas mesmo assim é feito de uma forma bonita e artística.</p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Rotten tomatoes</p>
+      <p>Nota: 97% Tomatômetro; 93% Pontuação da audiência</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Homem-Aranha: Para o Verso da Aranha combina narrativa ousada com animação impressionante para uma aventura puramente divertida com coração, humor e muita ação de super-heróis.</p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Cinema com rapadura</p>
+      <p>Nota: 9/10</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Buscando levar uma nova versão do Homem-Aranha para o grande público, a Sony investe numa animação competente e divertida, reforçada por personagens carismáticos e, se depender da qualidade, tem tudo para dar certo.      </p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Parça</p>
+      <p>Nota: 7,0/10</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p id="teste"></p>
+      <input type="button" id="botao" value="mostrar" />
+    </div>
+  </div>
+  <br>
+
+</div>
+
+
+<script>
+  botao.onclick = () => { //pro onload acho q teria q ser antes do body o script
+        let xhr = new XMLHttpRequest();
+        xhr.onload = imprimeCritica; 
+        xhr.open(
+          "GET",
+          `http://127.0.0.1:5000/ImprimeCriticaHomenaranha`
+        );
+        //dlinha 374(duas acima) nome e senha sao os name dos campos do login(no caso name)
+        xhr.send();
+        function imprimeCritica() { //é um nome de uma funcao
+          //console.log(JSON.parse(this.responseText))
+          var dados = JSON.parse(this.responseText); 
+          console.log(dados);
+          for(var i=0;i<dados.length;i++){
+          teste.innerHTML = '<p>'+dados[i].critica+'<p>';
+          //pra imprimir todas as criticas seria += dados[i]
+        }
+          
+        }
+      };
+</script>
+    
+</body>
+</html>
