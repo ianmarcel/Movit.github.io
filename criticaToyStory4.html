@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+  <h1>Toy story 4</h1>
+  <h5>Classificação: livre</h5>
+  <h5>Ano de publicação: 2017</h5>
+  <h5>Diretor: Josh Cooley, John Lasseter</h5>
+  <h5>Elenco: </h5>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Omelete</p>
+      <p>Nota: 5/5</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Nova aventura de Woody e Buzz prova que ainda há carisma e fôlego de sobra para a franquia      </p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: IMDb</p>
+      <p>Nota: 7,8/10</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Quando um novo brinquedo chamado "Forky" se junta a Woody e sua turma, uma viagem ao lado de velhos e novos amigos revela o quão grande o mundo pode ser para um brinquedo.      </p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Rotten tomatoes</p>
+      <p>Nota: 97% Tomatômetro; 94% Pontuação da audiência</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Comovente, engraçado e lindamente animado, Toy Story 4 consegue a façanha improvável de estender - e talvez concluir - uma saga animada praticamente perfeita.      </p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Cinema com rapadura</p>
+      <p>Nota: 8/10</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>A nova aventura de Woody pelo criativo universo criado pela parceria entre Disney e Pixar ganha ar autêntico, ainda que um pouco pálido diante dos filmes anteriores.      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Parça</p>
+      <p>Nota: 7,0/10</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p id="teste"></p>
+      <input type="button" id="botao" value="mostrar" />
+    </div>
+  </div>
+  <br>
+
+</div>
+    
+</body>
+
+<script>
+  botao.onclick = () => { //pro onload acho q teria q ser antes do body o script
+        let xhr = new XMLHttpRequest();
+        xhr.onload = imprimeCritica; 
+        xhr.open(
+          "GET",
+          `http://127.0.0.1:5000/ImprimeCriticaToyStory`
+        );
+        //dlinha 374(duas acima) nome e senha sao os name dos campos do login(no caso name)
+        xhr.send();
+        function imprimeCritica() { //é um nome de uma funcao
+          //console.log(JSON.parse(this.responseText))
+          var dados = JSON.parse(this.responseText); 
+          console.log(dados);
+          for(var i=0;i<dados.length;i++){
+          teste.innerHTML = '<p>'+dados[i].critica+'<p>';
+          //pra imprimir todas as criticas seria += dados[i]
+        }
+          
+        }
+      };
+</script>
+</html>

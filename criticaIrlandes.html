@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <title>O irlandes</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+  <h1>O Irlandês</h1>
+  <h5>Classificação: 16 anos</h5>
+  <h5>Ano de publicação: 2019</h5>
+  <h5>Diretor: Martin Scorsese</h5>
+  <h5>Elenco: Jesse Plemons, Robert De Niro, Joe Pesci, Al Pacino</h5>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Omelete</p>
+      <p>Nota: 5/5</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Martin Scorsese volta à Máfia em melancólica elegia cristã sobre pertencimento e culpa</p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: IMDb</p>
+      <p>Nota: 7,9/10</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Scorsese clássico. De Niro é o melhor que ele tem sido há anos. Pacino é realmente magnético e charmoso. Mas para mim, Joe Pesci é o destaque. Silenciosamente mortal, magnético, leal, complicado, é ele que vai levar o Oscar. Assisti no cinema (desculpe Netflix, mas não estou assistindo Scorsese em casa) e foi excelente. Oh Anna Paquin também é usada de maneira bastante inteligente. Boa atriz. Desempenho decente Vá e veja no cinema. Você vai se lembrar dos mestres voltando para um último passeio</p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Rotten tomatoes</p>
+      <p>Nota: 95% Tomatômetro; 85% Pontuação da audiência</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Um drama épico de gângster que ganha seu tempo de execução prolongado, The Irishman encontra Martin Scorsese revisitando temas familiares para um efeito comovente, engraçado e profundo.</p>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Cinema com rapadura</p>
+      <p>Nota: 10/10</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p>Um filmaço em tempo, técnica e narrativa que levará o espectador ao mundo da máfia como nem mesmo Scorsese havia explorado, com muito De Niro, Pacino e Pesci.</p>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-3" style="background-color:lavender;">
+      <br>
+      <p>Site: Parça</p>
+      <p>Nota: 7,0/10</p>
+    </div>
+    <div class="col-sm-9" style="background-color:lavenderblush;">
+      <br>
+      <p id="teste"></p>
+      <input type="button" id="botao" value="mostrar" />
+    </div>
+  </div>
+  <br>
+
+</div>
+
+<script>
+  botao.onclick = () => { //pro onload acho q teria q ser antes do body o script
+        let xhr = new XMLHttpRequest();
+        xhr.onload = imprimeCritica; 
+        xhr.open(
+          "GET",
+          `http://127.0.0.1:5000/ImprimeCriticaOirlandes`
+        );
+        //dlinha 374(duas acima) nome e senha sao os name dos campos do login(no caso name)
+        xhr.send();
+        function imprimeCritica() { //é um nome de uma funcao
+          //console.log(JSON.parse(this.responseText))
+          var dados = JSON.parse(this.responseText); 
+          console.log(dados);
+          for(var i=0;i<dados.length;i++){
+          teste.innerHTML = '<p>'+dados[i].critica+'<p>';
+          //pra imprimir todas as criticas seria += dados[i]
+        }
+          
+        }
+      };
+</script>
+    
+</body>
+</html>
